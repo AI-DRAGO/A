@@ -139,6 +139,17 @@ body {
   animation: floatParticle 6s ease-in-out infinite;
 }
 
+.couple-silhouette {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(55%, 260px);
+  height: auto;
+  fill: rgba(10, 10, 26, 0.55);
+  filter: drop-shadow(0 0 24px rgba(6, 148, 148, 0.12));
+}
+
 #scene-1 .fg-layer::before {
   top: 35%;
   left: 40%;
@@ -577,4 +588,3 @@ body {
     padding-right: env(safe-area-inset-right);
   }
 }
-
