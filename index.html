@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="A story for you.">
+  <title>A Story for You</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Audio Consent Overlay -->
+  <div id="intro-overlay" class="overlay" role="dialog" aria-label="Begin the story">
+    <div class="overlay-content">
+      <p class="overlay-subtitle">I made something for you</p>
+      <h1 class="overlay-title">A little story</h1>
+      <button id="begin-btn" class="begin-button" aria-label="Begin the story">
+        Begin
+      </button>
+      <p class="overlay-hint">🔊 Best with sound on</p>
+    </div>
+  </div>
+
+  <!-- Audio Toast Notification -->
+  <div id="audio-toast" class="audio-toast hidden" aria-live="polite">
+    Audio blocked by browser — tap the 🔇 icon to try again.
+  </div>
+
+  <!-- Audio Element -->
+  <audio id="bg-audio" preload="none" loop>
+    <source src="assets/music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Audio Controls -->
+  <div id="audio-controls" class="audio-controls" aria-label="Audio controls">
+    <button id="audio-toggle" class="audio-btn" aria-label="Toggle audio">
+      <span class="audio-icon">🔊</span>
+    </button>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Scene 1: The First Glance -->
+    <section id="scene-1" class="scene" aria-label="Scene 1: The beginning">
+      <div class="bg-layer" role="img" aria-label="Dark sky with soft glowing light"></div>
+      <div class="mid-layer"></div>
+      <div class="fg-layer"></div>
+      <div class="text-layer">
+        <h2 class="scene-text">I keep finding new reasons to smile because of you.</h2>
+      </div>
+    </section>
+
+    <!-- Scene 2: The Silent Conversation -->
+    <section id="scene-2" class="scene" aria-label="Scene 2: A memory">
+      <div class="bg-layer" role="img" aria-label="Warm glowing gradient"></div>
+      <div class="mid-layer"></div>
+      <div class="fg-layer"></div>
+      <div class="text-layer">
+        <p class="scene-text">Some conversations just stay with you, long after they end.</p>
+      </div>
+    </section>
+
+    <!-- Scene 3: The Climax -->
+    <section id="scene-3" class="scene" aria-label="Scene 3: The heart of the story">
+      <div class="bg-layer" role="img" aria-label="Radiating warm light"></div>
+      <div class="mid-layer"></div>
+      <div class="fg-layer"></div>
+      <div class="text-layer">
+        <div class="climax-card">
+          <p class="scene-text scene-text--climax">Life's been better since you came into it.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scene 4: Quiet Night -->
+    <section id="scene-4" class="scene" aria-label="Scene 4: A quiet moment">
+      <div class="bg-layer" role="img" aria-label="Deep blue star field"></div>
+      <div class="mid-layer"></div>
+      <div class="fg-layer"></div>
+      <div class="text-layer">
+        <p class="scene-text">Even the quiet moments feel better with you around.</p>
+      </div>
+    </section>
+
+    <!-- Scene 5: Outro & CTA -->
+    <section id="scene-5" class="scene scene--outro" aria-label="Scene 5: The end">
+      <div class="bg-layer"></div>
+      <div class="mid-layer"></div>
+      <div class="fg-layer"></div>
+      <div class="text-layer">
+        <p class="scene-text">Here's to every chapter ahead.</p>
+        <button id="replay-btn" class="replay-button" aria-label="Replay the story">
+          ↻ Replay
+        </button>
+        <p class="signature">— Hinesh</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,570 @@
+/* ==========================================================
+   ScrollHeart — style.css
+   Cool midnight palette, gentle warm animation style
+   ========================================================== */
+
+:root {
+  /* Colors */
+  --color-primary: #069494;
+  --color-background: #0A0A1A;
+  --color-accent: #8A9A5B;
+  --color-text: #E8E6D9;
+
+  /* Typography */
+  --font-display: 'Great Vibes', cursive;
+  --font-body: 'Lora', serif;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+
+  /* Scene Heights */
+  --scene-height-intro: 300svh;
+  --scene-height-verse: 200svh;
+  --scene-height-chorus: 250svh;
+  --scene-height-bridge: 150svh;
+  --scene-height-outro: 100svh;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: clip;
+  scroll-behavior: auto; /* never smooth — conflicts with GSAP */
+}
+
+body {
+  overflow-x: clip;
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================
+   Scenes & Layers
+   ========================================================== */
+
+.scene {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  overflow: hidden;
+}
+
+#scene-1 { height: var(--scene-height-intro); }
+#scene-2 { height: var(--scene-height-verse); }
+#scene-3 { height: var(--scene-height-chorus); }
+#scene-4 { height: var(--scene-height-bridge); }
+#scene-5 { height: var(--scene-height-outro); }
+
+.bg-layer,
+.mid-layer,
+.fg-layer,
+.text-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.bg-layer,
+.mid-layer,
+.fg-layer {
+  will-change: transform;
+  pointer-events: none;
+}
+
+.text-layer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  z-index: 4;
+}
+
+/* ==========================================================
+   Scene 1 — The First Glance (bokeh + stillness)
+   ========================================================== */
+
+#scene-1 .bg-layer {
+  background:
+    radial-gradient(circle at 20% 30%, rgba(6, 148, 148, 0.18) 0%, transparent 45%),
+    radial-gradient(circle at 75% 60%, rgba(138, 154, 91, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 50% 85%, rgba(6, 148, 148, 0.1) 0%, transparent 50%),
+    var(--color-background);
+}
+
+#scene-1 .mid-layer::before,
+#scene-1 .mid-layer::after {
+  content: '';
+  position: absolute;
+  width: 140px;
+  height: 90px;
+  border-radius: 12px;
+  box-shadow: 0 0 40px 10px rgba(6, 148, 148, 0.15);
+  background: rgba(6, 148, 148, 0.05);
+}
+
+#scene-1 .mid-layer::before {
+  top: 25%;
+  left: 15%;
+}
+
+#scene-1 .mid-layer::after {
+  top: 60%;
+  right: 12%;
+}
+
+#scene-1 .fg-layer::before,
+#scene-1 .fg-layer::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(232, 230, 217, 0.5);
+  animation: floatParticle 6s ease-in-out infinite;
+}
+
+#scene-1 .fg-layer::before {
+  top: 35%;
+  left: 40%;
+}
+
+#scene-1 .fg-layer::after {
+  top: 65%;
+  left: 65%;
+  animation-delay: -3s;
+}
+
+/* ==========================================================
+   Scene 2 — The Silent Conversation (warm glow, fireflies)
+   ========================================================== */
+
+#scene-2 .bg-layer {
+  background: linear-gradient(
+    180deg,
+    var(--color-background) 0%,
+    #14141f 50%,
+    var(--color-background) 100%
+  );
+}
+
+#scene-2 .mid-layer::before,
+#scene-2 .mid-layer::after {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 130px;
+  border-radius: 8px;
+  background: rgba(138, 154, 91, 0.08);
+  box-shadow: 0 0 30px 8px rgba(138, 154, 91, 0.15);
+  animation: windowPulse 4s ease-in-out infinite;
+}
+
+#scene-2 .mid-layer::before {
+  top: 20%;
+  left: 20%;
+}
+
+#scene-2 .mid-layer::after {
+  top: 55%;
+  right: 18%;
+  animation-delay: -2s;
+}
+
+#scene-2 .fg-layer::before,
+#scene-2 .fg-layer::after {
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(6, 148, 148, 0.6);
+  animation: floatParticle 5s ease-in-out infinite;
+}
+
+#scene-2 .fg-layer::before {
+  top: 45%;
+  left: 30%;
+}
+
+#scene-2 .fg-layer::after {
+  top: 70%;
+  left: 70%;
+  animation-delay: -2.5s;
+}
+
+/* ==========================================================
+   Scene 3 — The Climax (radiant center)
+   ========================================================== */
+
+#scene-3 .bg-layer {
+  background: radial-gradient(
+    circle at 50% 45%,
+    rgba(6, 148, 148, 0.22) 0%,
+    var(--color-background) 65%
+  );
+}
+
+#scene-3 .mid-layer::before,
+#scene-3 .mid-layer::after {
+  content: '';
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: 2px;
+  height: 260px;
+  background: linear-gradient(to bottom, rgba(232, 230, 217, 0.12), transparent);
+  transform-origin: top center;
+}
+
+#scene-3 .mid-layer::before {
+  transform: translate(-50%, -50%) rotate(30deg);
+}
+
+#scene-3 .mid-layer::after {
+  transform: translate(-50%, -50%) rotate(-30deg);
+}
+
+#scene-3 .fg-layer::before,
+#scene-3 .fg-layer::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(6, 148, 148, 0.7);
+  top: 50%;
+  left: 50%;
+  animation: floatParticle 5s ease-in-out infinite;
+}
+
+#scene-3 .fg-layer::before {
+  transform: translate(-120px, -60px);
+}
+
+#scene-3 .fg-layer::after {
+  transform: translate(100px, 70px);
+  animation-delay: -2s;
+}
+
+.climax-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: var(--space-lg);
+  max-width: min(90%, 500px);
+}
+
+/* ==========================================================
+   Scene 4 — Quiet Night (star field)
+   ========================================================== */
+
+#scene-4 .bg-layer {
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(232, 230, 217, 0.4), transparent),
+    radial-gradient(1px 1px at 30% 60%, rgba(232, 230, 217, 0.3), transparent),
+    radial-gradient(1px 1px at 55% 15%, rgba(232, 230, 217, 0.5), transparent),
+    radial-gradient(1px 1px at 70% 80%, rgba(232, 230, 217, 0.3), transparent),
+    radial-gradient(1px 1px at 85% 40%, rgba(232, 230, 217, 0.4), transparent);
+  background-color: var(--color-background);
+}
+
+#scene-4 .mid-layer::before,
+#scene-4 .mid-layer::after {
+  content: '';
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(232, 230, 217, 0.5);
+  box-shadow: 0 0 12px 3px rgba(232, 230, 217, 0.15);
+}
+
+#scene-4 .mid-layer::before {
+  top: 30%;
+  left: 25%;
+}
+
+#scene-4 .mid-layer::after {
+  top: 65%;
+  left: 70%;
+}
+
+/* ==========================================================
+   Scene 5 — Outro (stillness)
+   ========================================================== */
+
+#scene-5 .bg-layer {
+  background: radial-gradient(
+    circle at 50% 60%,
+    rgba(6, 148, 148, 0.1) 0%,
+    var(--color-background) 70%
+  );
+}
+
+.scene--outro .text-layer {
+  gap: var(--space-md);
+}
+
+/* ==========================================================
+   Typography
+   ========================================================== */
+
+.scene-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 6vw, 3rem);
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: center;
+  max-width: min(90%, 600px);
+  opacity: 0;
+}
+
+.scene-text--climax {
+  font-size: clamp(1.75rem, 7vw, 3.5rem);
+}
+
+.signature {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  letter-spacing: 0.2em;
+  opacity: 0.6;
+  margin-top: var(--space-lg);
+}
+
+/* ==========================================================
+   Overlay
+   ========================================================== */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-background);
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.overlay-content {
+  text-align: center;
+  padding: var(--space-md);
+}
+
+.overlay-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: var(--space-sm);
+}
+
+.overlay-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 400;
+  margin-bottom: var(--space-lg);
+}
+
+.begin-button {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  padding: var(--space-sm) var(--space-lg);
+  border: 1px solid var(--color-primary);
+  border-radius: 50px;
+  background: transparent;
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.begin-button:hover,
+.begin-button:focus-visible {
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.overlay-hint {
+  font-size: 0.75rem;
+  opacity: 0.4;
+  margin-top: var(--space-md);
+}
+
+/* ==========================================================
+   Audio Controls & Toast
+   ========================================================== */
+
+.audio-controls {
+  position: fixed;
+  bottom: var(--space-md);
+  right: var(--space-md);
+  z-index: 50;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.audio-controls.visible {
+  opacity: 1;
+}
+
+.audio-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  transition: border-color 0.3s ease;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.audio-btn:hover {
+  border-color: var(--color-primary);
+}
+
+.audio-toast {
+  position: fixed;
+  top: var(--space-md);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(10, 10, 26, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: 8px;
+  font-size: 0.8rem;
+  z-index: 60;
+  transition: opacity 0.4s ease;
+}
+
+.audio-toast.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ==========================================================
+   Replay Button
+   ========================================================== */
+
+.replay-button {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  letter-spacing: 0.15em;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-primary);
+  border-radius: 50px;
+  background: transparent;
+  color: var(--color-primary);
+  cursor: pointer;
+  margin-top: var(--space-lg);
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 rgba(6, 148, 148, 0); }
+  50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(6, 148, 148, 0.2); }
+}
+
+/* ==========================================================
+   Shared Keyframes
+   ========================================================== */
+
+@keyframes floatParticle {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(-16px); opacity: 0.9; }
+}
+
+@keyframes windowPulse {
+  0%, 100% { box-shadow: 0 0 30px 8px rgba(138, 154, 91, 0.1); }
+  50% { box-shadow: 0 0 30px 8px rgba(138, 154, 91, 0.25); }
+}
+
+/* ==========================================================
+   Reduced Motion Fallback
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .bg-layer,
+  .mid-layer,
+  .fg-layer {
+    will-change: auto;
+    transform: none !important;
+  }
+
+  .scene-text {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .scene {
+    height: auto !important;
+    min-height: 100svh;
+  }
+}
+
+/* ==========================================================
+   Mobile-First Responsive
+   ========================================================== */
+
+@media (min-width: 768px) {
+  .scene-text {
+    font-size: clamp(1.75rem, 4vw, 3.25rem);
+  }
+
+  .overlay-title {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+  }
+
+  .climax-card {
+    padding: var(--space-xl);
+  }
+}
+
+@supports (padding: env(safe-area-inset-top)) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
