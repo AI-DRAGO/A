@@ -250,16 +250,25 @@ body {
   background: rgba(6, 148, 148, 0.7);
   top: 50%;
   left: 50%;
-  animation: floatParticle 5s ease-in-out infinite;
 }
 
 #scene-3 .fg-layer::before {
-  transform: translate(-120px, -60px);
+  animation: floatParticleScene3Before 5s ease-in-out infinite;
 }
 
 #scene-3 .fg-layer::after {
-  transform: translate(100px, 70px);
+  animation: floatParticleScene3After 5s ease-in-out infinite;
   animation-delay: -2s;
+}
+
+@keyframes floatParticleScene3Before {
+  0%, 100% { transform: translate(-120px, -60px); opacity: 0.4; }
+  50%      { transform: translate(-120px, -76px); opacity: 0.9; }
+}
+
+@keyframes floatParticleScene3After {
+  0%, 100% { transform: translate(100px, 70px); opacity: 0.4; }
+  50%      { transform: translate(100px, 54px); opacity: 0.9; }
 }
 
 .climax-card {
@@ -568,3 +577,4 @@ body {
     padding-right: env(safe-area-inset-right);
   }
 }
+
