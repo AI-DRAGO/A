@@ -74,6 +74,12 @@
   if (replayBtn) {
     replayBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'instant' });
+      overlay.classList.remove('hidden');
+      audioControls.classList.remove('visible');
+      audio.pause();
+      audio.currentTime = 0;
+      isPlaying = false;
+      audioIcon.textContent = '🔇';
       ScrollTrigger.refresh();
     });
   }
@@ -140,18 +146,25 @@
       // Climax text is handled by the card wrapper instead
       if (text.classList.contains('scene-text--climax')) return;
 
-      gsap.from(text, {
-        y: 30,
-        opacity: 0,
-        duration: 1.5,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: text,
-          start: 'top 80%',
-          end: 'top 50%',
-          toggleActions: 'play none none reverse',
-        },
-      });
+      // CSS starts these at opacity:0. gsap.from() would capture that same
+      // opacity:0 as its "end" state, so the text would animate 0 -> 0 and
+      // never appear. Use fromTo() with an explicit end state instead.
+      gsap.fromTo(
+        text,
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.5,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: text,
+            start: 'top 80%',
+            end: 'top 50%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
     });
 
     const climaxCard = document.querySelector('.climax-card');
