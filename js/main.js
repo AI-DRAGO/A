@@ -49,7 +49,17 @@
       });
 
     // Refresh ScrollTrigger once layout settles after overlay dismiss
-    requestAnimationFrame(() => ScrollTrigger.refresh());
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+
+      // Safety net: guarantee Scene 1's text is visible the moment the
+      // story begins, regardless of whether ScrollTrigger has finished
+      // recalculating trigger positions yet.
+      const firstText = document.querySelector('#scene-1 .scene-text');
+      if (firstText) {
+        gsap.to(firstText, { y: 0, opacity: 1, duration: 1.5, ease: 'power2.out' });
+      }
+    });
   });
 
   audioToggle.addEventListener('click', () => {
